@@ -1,12 +1,13 @@
 main(List<String> args) {
-  List<int> clock = [2, 1, 5, 0];
+  List<int> clock = [1, 0, 3, 8];
   List<String> clockList = timesForValues(clock);
   print(clockList);
+  print(clockList.first);
 }
 
 List<String> timesForValues(List<int> clock) {
   clock.sort();
-  List<int> numberList = new List.from(clock.reversed);
+  List<int> numberList = List.from(clock.reversed);
   List<String> clockEnd = [];
   for (int i = 0; i < numberList.length; i++) {
     for (int j = 0; j < numberList.length; j++) {
@@ -25,7 +26,7 @@ List<String> timesForValues(List<int> clock) {
           minutes.forEach((minute) {
             if (hour == 24 && minute == 0) {
               clockEnd.add("${hour.toDual}:${minute.toDual}");
-            } else if (hour < 24 && minute <= 60) {
+            } else if (hour < 24 && minute < 60) {
               clockEnd.add("${hour.toDual}:${minute.toDual}");
             }
           });
@@ -39,6 +40,6 @@ List<String> timesForValues(List<int> clock) {
   return clockEnd.toSet().toList();
 }
 
-extension StringExtension on int {
+extension IntExtension on int {
   String get toDual => this.toString().length == 1 ? "0$this" : "$this";
 }
